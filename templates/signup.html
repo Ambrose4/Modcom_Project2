@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <!-- go to getbootstrap.com -->
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+      <!-- CSS only -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-
+      ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
+      
+      
+</head>
+<body>
+    <br>
+    <a href="/">Home Page</a>
+
+
+    <header class="row">
+        <div class="col-md-12">
+            <nav class="navbar  navbar-expand-md navbar-light fixed-top" style="background-color: cadetblue;">
+                <a href="navbar-brand">
+                    <img src="../static/20220727_124102.jpg" alt="" height="100px" width="100%">
+                </a> 
+                <button type="button" class="navbar-toggler" data-bs-target="#mynav" data-bs-toggle="collapse">
+                    <i class="navbar-toggler-icon"></i>
+                </button>
+
+                <div class="collapse navbar-collapse md-2" id="mynav">
+                    <div class="navbar-nav"> 
+                        <a href="/" class="nav-link active">Home</a>
+                        <a href="/shop" class="nav-link active">Shop</a>
+                     
+                      
+                
+                    
+                        <a href="/single" class="nav-link active"> <img src="../static/cart.png" alt=""> Cart</a>
+                        <a href="/login" class="nav-link active"> <img src="../static/profile.png" alt=""> </a>
+                       
+                     
+                        
+                    </div>
+                </div>
+
+                
+
+            </nav>
+
+        </div>
+
+    </header>
+    <br><br><br><br><br><br>
+  <div class="container">
+    <section class="row">
+        <div class="col-md-4">
+       
+              <h1 class="text-warning">Empire Cosmetic</h1>
+              <h3>Create a Free Account Today!</h3>
+              <hr>
+              <!-- we need to create a python route  named /sign up-->
+              <b style="color: rgb(255, 0, 21);">{{message}}</b>
+          
+          
+              <form action="/signup" method="post">
+                  <input type="text" name="firstname" placeholder="First Name" required>
+                  <br><br>
+                  <input type="text" name="lastname" placeholder="Last name" required>
+                  <br><br>
+                  <input type="email" name="email" placeholder="Email" required>
+                  <br><br>
+                  <input type="password" name="password1" placeholder="Your password" required>
+                  <br><br>
+                  <input type="password" name="password2" placeholder="Confirm Password" required>
+                  <br><br>
+                  <input type="tel" name="phone" placeholder="Your phone" required>
+                  <br><br>
+                  <input type="submit" value="Create Account" class="btn btn-dark">
+                  
+              </form>
+              <br>
+             
+            
+  
+        </div>
+        <!-- end of 1 div -->
+  
+        <div class="col-md-8">
+            <h2>Buy products ^  get 10% discount</h2>
+        
+             <img src="../static/p1.jpeg" alt="" class="img-fluid" width="650px">
+  
+  
+        </div>
+        <!-- end of 2 div -->
+    </section>
+    <br>
+     <!-- TODO login later -->
+     <a href="/login">Already have an account? Log In</a>
+          
+  
+
+  </div>
+
+
+  <footer class="col-md-12  text-black text-center p-3" style="background-color: cadetblue;">
+    <b>Empire cosmetic Contact us +2547201045 *** ***</b><br>
+    <h6 class="text-muted">© 2022 | Empire Cosmetic.Built with <img src="../static/love.png" alt=""> at Modcom</h6>
+
+
+</footer>
+
+</body>
+</html>

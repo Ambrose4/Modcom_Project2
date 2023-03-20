@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+          <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-
+ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+ <br>
+                                    {% with messages = get_flashed_messages(with_categories=true) %}
+                                       {% if messages %}
+                                          {% for category, message in messages %}
+                                             <div class="alert alert-{{category}}" role="alert">
+                                                 {{ message }}
+                                             </div>
+                                          {% endfor %}
+                                       {% endif %}
+                                    {% endwith %}
+                                    <br>
+ {% if 'cart_item' in session %}
+           <p><a id="btnEmpty" href="{{ url_for('.empty_cart') }}" class="btn btn-danger">Empty Cart</a></p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Unit Price</th>
+                        <th class="text-center">Price</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for key, val in session['cart_item'].items() %}
+                 {% set quantity = session['cart_item'][key]['quantity'] %}
+                 {% set offer_cost = session['cart_item'][key]['offer_cost'] %}
+                 {% set item_price = session['cart_item'][key]['total_price'] %}
+                    <tr>
+                        <td class="col-sm-8 col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="">
+                                <img class="media-object" width="150" height="150"
+                                     src="../static/{{ session['cart_item'][key]['image'] }}"
+                                     > </a>
+                             <div class="text-muted">
+                               <i> <h5>
+                                        {{ session['cart_item'][key]['description'] }}
+                                     
+
+                                </h5></i>
+                            </div>
+                        </div></td>
+                        <td class=" col-md-3" style="text-align: center">
+                        <input type="email" class="form-control col-sm" value="{{ quantity }}">
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>KSH &nbsp{{ offer_cost }} </strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>KSH &nbsp{{ item_price }} </strong></td>
+                        <td class="col-sm-1 col-md-1">
+                        <a href="{{ url_for('.delete_product', code=session['cart_item'][key]['item_id']) }}" class="btn btn-danger">
+                            <span class="fa fa-trash"></span> Remove
+                        </a></td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="4"><h5>Total Quantity</h5></td>
+                        <td class="text-right"><h5><strong>{{ session['all_total_quantity'] }}</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><h4>Total</h4></td>
+                        <td colspan="2" class="text-right"><h4><strong>KES {{ session['all_total_price'] }}</strong></h4></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                        <a href="/shop" class="btn btn-info">
+                            <span class="fa fa-shopping-cart"></span> Continue Shopping
+                        </a>
+                        </td>
+                         <td>
+                       
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+        <h5>Lipa Na Mpesa</h5>
+        <section class="row">
+            <div class="col-md-12">
+                <!-- we need to create an mpesa route -->
+                <!-- the mpesa route will receive the phone,amount -->
+                <!-- safaricom provides an application programming interface-API its a url -->
+                <form action="/mpesa" method="post">
+                   
+                    </i><br>
+                    <input type="number" name="amount" placeholder="Enter amount" 
+                    value="{{ session['all_total_price'] }}"><br><br>
+                    <input type="tel" name="phone" placeholder="phone 2547xxxx">
+                    <br><br>
+                    <input type="submit" value="Make Payment" class="btn btn-dark">
+
+                </form>
+
+            </div>
+
+        </section>
+            <div class="row">
+                <div class="col-md-6">
+
+                </div>
+
+            </div>
+          {% else %}
+            <br>
+           <div class="no-records alert alert-info">Your Cart is Empty, Please continue shopping</div>
+            <br>
+
+            <a href="/shop" class="btn btn-info">
+                            <span class="fa fa-shopping-cart"></span> Continue Shopping
+            </a>
+
+             <a href="/customer_account" class="btn btn-info">
+                            <!-- <span class="fa fa-user"></span> My Profile -->
+            </a>
+            <a href="/login" class="btn btn-info">My profile</a>
+          {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>
